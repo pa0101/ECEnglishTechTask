@@ -1,19 +1,28 @@
+using System;
+using AutoMapper;
+using ECEnglishTechTask.Application.Extensions;
+using ECEnglishTechTask.Application.Services;
+using ECEnglishTechTask.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.RegisterDALDependencies(builder.Configuration);
+builder.Services.AddScoped<ICourseService, CourseService>();
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+var config = new MapperConfiguration(cfg => cfg.AddMaps(AppDomain.CurrentDomain.GetAssemblies()));
+var mapper = config.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
