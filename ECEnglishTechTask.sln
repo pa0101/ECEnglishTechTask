@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{10E03343-9479-456C-824A-7FDE9AB9150C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECEnglishTechTask.API", "Backend\ECEnglishTechTask.API\ECEnglishTechTask.API.csproj", "{97A8C902-2ACB-4603-9ACA-5DC7CFB4681A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{97A8C902-2ACB-4603-9ACA-5DC7CFB4681A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97A8C902-2ACB-4603-9ACA-5DC7CFB4681A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97A8C902-2ACB-4603-9ACA-5DC7CFB4681A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97A8C902-2ACB-4603-9ACA-5DC7CFB4681A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{97A8C902-2ACB-4603-9ACA-5DC7CFB4681A} = {10E03343-9479-456C-824A-7FDE9AB9150C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B02AF35C-9987-4D4F-99DF-5983CACFFF83}
+	EndGlobalSection
+EndGlobal
