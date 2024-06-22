@@ -2,8 +2,8 @@ using ECEnglishTechTask.Core.Entities;
 
 namespace ECEnglishTechTask.Application.Services.Interfaces
 {
-    public interface ICourseService
+    public interface IStudentService
     {
-        IEnumerable<Course> GetCourses();
+        Student AddStudent(Student student);
     }
 }

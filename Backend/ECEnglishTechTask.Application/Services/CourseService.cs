@@ -13,7 +13,6 @@ namespace ECEnglishTechTask.Application.Services
             _repository = repository;    
         }
 
-        public Course GetCourseById(int courseId) => _repository.GetCourseById(courseId);
         public IEnumerable<Course> GetCourses() => _repository.GetCourses();
     }
 }

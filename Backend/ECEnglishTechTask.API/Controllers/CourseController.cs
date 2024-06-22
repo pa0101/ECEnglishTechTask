@@ -28,8 +28,6 @@ public class CourseController : ControllerBase
     {
         _logger.LogInformation("Getting all courses");
 
-        var courses = _service.GetCourses();
-
-        return Ok(_mapper.Map<IEnumerable<CourseDto>>(courses));
+        return Ok(_mapper.Map<IEnumerable<CourseDto>>(_service.GetCourses()));
     }
 }

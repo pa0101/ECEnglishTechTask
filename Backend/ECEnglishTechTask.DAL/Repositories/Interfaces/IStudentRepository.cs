@@ -2,8 +2,8 @@ using ECEnglishTechTask.Core.Entities;
 
 namespace ECEnglishTechTask.DAL.Repositories.Interfaces
 {
-    public interface ICourseRepository
+    public interface IStudentRepository
     {
-        IEnumerable<Course> GetCourses();
+        Student AddStudent(Student student);
     }
 }

@@ -12,8 +12,9 @@ namespace ECEnglishTechTask.Application.Extensions
         public static IServiceCollection RegisterDALDependencies(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ECEnglishContext>(option =>
-                    option.UseInMemoryDatabase(configuration.GetSection("InMemoryDatabaseName").Value));
+                option.UseInMemoryDatabase(configuration.GetSection("InMemoryDatabaseName").Value));
 
+            services.AddScoped<IStudentRepository, StudentRepository>();
             services.AddScoped<ICourseRepository, CourseRepository>();
 
             return services;

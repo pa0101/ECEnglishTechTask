@@ -5,16 +5,20 @@ namespace ECEnglishTechTask.DAL
 {
     public class ECEnglishContext : DbContext
     {
+        public DbSet<Student> Students { get; set; }
+        public DbSet<CourseEnrollment> CourseEnrollments { get; set; }
+        public DbSet<Course> Courses { get; set; }
+        
         public ECEnglishContext(DbContextOptions<ECEnglishContext> options) : base(options)
         {
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase(databaseName: "ECEnglishDb");
+            modelBuilder.Entity<Student>()
+                .HasMany(s => s.CourseEnrollments)
+                .WithOne()
+                .HasForeignKey(ce => ce.StudentId);
         }
-
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Course> Courses { get; set; }
     }
 }
