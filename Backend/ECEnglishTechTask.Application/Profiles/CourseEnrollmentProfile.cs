@@ -1,5 +1,6 @@
 using AutoMapper;
 using ECEnglishTechTask.Application.Dtos;
+using ECEnglishTechTask.Application.Inputs;
 using ECEnglishTechTask.Core.Entities;
 
 namespace ECEnglishTechTask.Application.Profiles
@@ -9,6 +10,7 @@ namespace ECEnglishTechTask.Application.Profiles
         public CourseEnrollmentProfile()
         {
             CreateMap<CourseEnrollment, CourseEnrollmentDto>();
+            CreateMap<CourseEnrollmentInput, CourseEnrollment>();
         }
     }
 }

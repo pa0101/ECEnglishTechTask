@@ -1,7 +1,7 @@
 using AutoMapper;
 using ECEnglishTechTask.Application.Dtos;
+using ECEnglishTechTask.Application.Inputs;
 using ECEnglishTechTask.Application.Services.Interfaces;
-using ECEnglishTechTask.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
@@ -25,12 +25,10 @@ public class StudentController : ControllerBase
 
     [HttpPost]
     [Route("AddStudent")]
-    public IActionResult AddStudent(Student student)
+    public IActionResult AddStudent(StudentInput input)
     {
         _logger.LogInformation("Adding student");
 
-        student = _service.AddStudent(student);
-
-        return Ok(_mapper.Map<StudentDto>(student));
+        return Ok(_mapper.Map<StudentDto>(_service.AddStudent(input)));
     }
 }

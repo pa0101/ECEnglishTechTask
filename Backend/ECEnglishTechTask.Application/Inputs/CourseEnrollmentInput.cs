@@ -1,12 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace ECEnglishTechTask.Core.Entities
+namespace ECEnglishTechTask.Application.Inputs
 {
-    public class CourseEnrollment
+    public class CourseEnrollmentInput
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CourseEnrollmentId { get; set; }
         public int CourseId { get; set; }
         public int StudentId { get; set; }
