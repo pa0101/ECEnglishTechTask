@@ -9,6 +9,7 @@ import { Dropdown } from '../components/Dropdown';
 function StudentEnrollmentView() {
     const [courses, setCourses] = useState<Course[]>([]);
     const [selectedCourses, setSelectedCourses] = useState<Course[]>([]);
+    const [selectedCourseId, setSelectedCourseId] = useState<string | number>(''); 
 
     useEffect(() => {
         fetch('http://localhost:5089/course/getcourses')
@@ -23,9 +24,9 @@ function StudentEnrollmentView() {
                 alert('Course dates cannot overlap!');
                 return prev;
             }
-    
             return [...prev, course];
         });
+        setSelectedCourseId('');
     };
 
     const mapCourseEnrollments = (courses: Course[]): CourseEnrollment[] => {
@@ -52,7 +53,7 @@ function StudentEnrollmentView() {
         email: Yup.string().email('Invalid email address').required('Email is required'),
     });
 
-    const handleSubmit = (values: Student) => {
+    const handleSubmit = (values: Student, { resetForm }: { resetForm: () => void }) => {
         const studentEnrollment: Student = {
             ...values,
             courseEnrollments: mapCourseEnrollments(selectedCourses)
@@ -64,7 +65,12 @@ function StudentEnrollmentView() {
             body: JSON.stringify(studentEnrollment)
         })
             .then(response => response.json())
-            .then(data => console.log('Success:', data))
+            .then(data => {
+                alert(`Success: ${JSON.stringify(data)}`);
+                resetForm();
+                setSelectedCourses([]);
+                setSelectedCourseId('');
+            })
             .catch(error => console.error('Error:', error));
     };
 
@@ -87,6 +93,7 @@ function StudentEnrollmentView() {
                                     handleCourseSelect(course);
                                     setFieldValue('courseEnrollments', selectedCourses);
                                 }}
+                                selectedValue={selectedCourseId}
                                 defaultOption="Select Course"
                             />
                         </div>
