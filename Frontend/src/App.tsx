@@ -1,11 +1,13 @@
 import './App.css';
-import { Course } from "./Components/Course";
+import StudentEnrollmentView from './views/StudentEnrollmentView';
 
 function App() {
 
   return (
-    <Course />
-  )
+    <div className="App">
+      <StudentEnrollmentView />
+    </div>
+  );
 }
 
 export default App
