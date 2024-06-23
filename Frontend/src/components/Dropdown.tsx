@@ -10,9 +10,9 @@ interface DropdownProps<T> {
 
 export const Dropdown = <T,>({ items, labelKey, valueKey, onSelect, defaultOption }: DropdownProps<T>) => {
   return (
-    <select onChange={(e) => onSelect(items.find(item => item[valueKey] === e.target.value)!)}>
+    <select onChange={(e) => onSelect(items.find(item => String(item[valueKey]) === e.target.value)!)}>
       {defaultOption && (
-        <option>{defaultOption}</option>
+        <option value="">{defaultOption}</option>
       )}
       {items.map((item, index) => (
         <option key={index} value={String(item[valueKey])}>

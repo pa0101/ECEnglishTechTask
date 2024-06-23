@@ -25,7 +25,8 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  justify-content: center;
+  align-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -33,9 +34,47 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #333;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.label {
+  margin-right: 10px;
+  color: #fff;
+  width: 100px;
+}
+
+input, select {
+  flex-grow: 1;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.validation-message {
+  color: #fff;
+  margin-bottom: 20px;
 }
 
 button {
+  align-self: center;
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
