@@ -1,10 +1,7 @@
-using ECEnglishTechTask.Core.Enums;
-
 namespace ECEnglishTechTask.Application.Dtos
 {
-    public class CourseEnrollmentDto
-    {
-        public int CourseEnrollmentId { get; set; }
+    public class CourseEnrollmentDto : BaseDto
+    {        
         public int CourseId { get; set; }
         public int StudentId { get; set; }
         public string Name { get; set; }

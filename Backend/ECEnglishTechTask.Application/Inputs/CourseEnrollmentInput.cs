@@ -1,8 +1,7 @@
 namespace ECEnglishTechTask.Application.Inputs
 {
-    public class CourseEnrollmentInput
+    public class CourseEnrollmentInput : BaseInput
     {
-        public int CourseEnrollmentId { get; set; }
         public int CourseId { get; set; }
         public int StudentId { get; set; }
         public string Name { get; set; }

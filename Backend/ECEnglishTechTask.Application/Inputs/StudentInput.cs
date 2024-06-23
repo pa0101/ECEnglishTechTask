@@ -1,8 +1,7 @@
 namespace ECEnglishTechTask.Application.Inputs
 {
-    public class StudentInput
+    public class StudentInput : BaseInput
     {
-        public int StudentId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }

@@ -1,8 +1,7 @@
 namespace ECEnglishTechTask.Application.Dtos
 {
-    public class CourseDto
+    public class CourseDto : BaseDto
     {
-        public int CourseId { get; set; }
         public string Name { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
