@@ -30,7 +30,7 @@ namespace ECEnglishTechTask.DAL.Repositories
                     endDate = startDate.AddDays(4);
                     courses.Add(new Course
                     {
-                        Name = $"English {j} {startDate:dd-MM-yyyy} - {endDate:dd-MM-yyyy}",
+                        Name = $"ENG_{j} - {startDate:dddd} {startDate.Day} {startDate.ToString("MMMM", System.Globalization.CultureInfo.CurrentCulture)} to {endDate:dddd} {endDate.Day} {endDate.ToString("MMMM", System.Globalization.CultureInfo.CurrentCulture)}, {endDate.Year}",
                         StartDate = startDate,
                         EndDate = endDate
                     });
