@@ -18,7 +18,14 @@ function StudentEnrollmentView() {
     }, []);
 
     const handleCourseSelect = (course: Course) => {
-        setSelectedCourses(prev => [...prev, course]);
+        setSelectedCourses(prev => {
+            if (prev.some(selectedCourse => selectedCourse.startDate === course.startDate)) {
+                alert('Course dates cannot overlap!');
+                return prev;
+            }
+    
+            return [...prev, course];
+        });
     };
 
     const mapCourseEnrollments = (courses: Course[]): CourseEnrollment[] => {
@@ -40,8 +47,8 @@ function StudentEnrollmentView() {
     };
 
     const validationSchema = Yup.object({
-        firstName: Yup.string().required('First Name is required'),
-        lastName: Yup.string().required('Last Name is required'),
+        firstName: Yup.string().required('First name is required'),
+        lastName: Yup.string().required('Last name is required'),
         email: Yup.string().email('Invalid email address').required('Email is required'),
     });
 
@@ -71,7 +78,7 @@ function StudentEnrollmentView() {
                 {({ setFieldValue }) => (
                     <Form>
                         <div className="form-group">
-                            <label className="label" htmlFor="courseSelect">Course:</label>
+                            <label className="label" htmlFor="courseSelect">Courses:</label>
                             <Dropdown<Course>
                                 items={courses}
                                 labelKey="name"
