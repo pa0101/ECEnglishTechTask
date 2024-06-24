@@ -26,7 +26,9 @@ Algorithm:
 1. Validate holidayStartDate and holidayEndDate to check they are a Monday and Friday respectively.
 2. Get all the start (Monday) and end (Friday) date ranges that are in the holiday break.
 3. Calculate the numberOfHolidayWeeks in the holiday break.
-4. Find affected courses that match the date ranges in the holiday break, and, all subsequent courses after the affected courses 
-5. For each course found in step 4, adjust the start and end dates by adding numberOfHolidayWeeks
+4. Find affected course enrollments that match the date ranges in the holiday break, and, include all subsequent course enrollments after the affected course enrollments 
+5. For each course enrollments found in step 4, adjust the start and end dates by adding numberOfHolidayWeeks
 
 By following this approach, not only do we account for the holiday duration, but we also maintain the original order of the courses.
+However, in the real world, there may be other factors to consider. 
+One issue that may occur, course enrollments adjusted with the new start and end dates may be full. Further business rule knowledge would be needed to account for this possible scenario and to further expand on the algorithm.
