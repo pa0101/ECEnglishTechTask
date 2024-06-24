@@ -16,6 +16,9 @@
 - Navigate to the local url of the React app.
 
 ## Booking a Holiday and Extending Course Dates Logic
+Assumptions:
+- Courses need to be done in a specific order. For example, English 1 (A1) would need to be completed before commencing English 2 (A2)
+
 Input:
 - holidayStartDate: Date the holiday starts (must be a Monday)
 - holidayEndDate: Date the holiday ends (must be a Friday)
