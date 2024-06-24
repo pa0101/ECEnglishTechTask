@@ -6,11 +6,10 @@ import { Student } from '../models/Student';
 import { CourseEnrollment } from '../models/CourseEnrollment';
 import { Dropdown } from '../components/Dropdown';
 
-
 function StudentEnrollmentView() {
     const [courses, setCourses] = useState<Course[]>([]);
     const [selectedCourses, setSelectedCourses] = useState<Course[]>([]);
-    const [selectedCourseId, setSelectedCourseId] = useState<string | number>(''); 
+    const [selectedCourseId, setSelectedCourseId] = useState<string | number>('');
 
     useEffect(() => {
         fetch(`${import.meta.env.VITE_API_BASE_URL}course/getcourses`)
@@ -40,15 +39,6 @@ function StudentEnrollmentView() {
         }));
     };
 
-    const initialValues: Student = {
-        id: 0,
-        firstName: '',
-        lastName: '',
-        email: '',
-        status: 0,
-        courseEnrollments: []
-    };
-
     const handleSubmit = (values: Student, { resetForm }: { resetForm: () => void }) => {
         const studentEnrollment: Student = {
             ...values,
@@ -60,18 +50,27 @@ function StudentEnrollmentView() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(studentEnrollment)
         })
-            .then(response => response.json())
-            .then(data => {
-                let addStudentMessage = `User added!\n${data.firstName} ${data.lastName}\n${data.email}\n`;
-                data.courseEnrollments.forEach((courseEnrollment: { name: CourseEnrollment; }) => {
-                    addStudentMessage += `${courseEnrollment.name}\n`;
-                });
-                alert(addStudentMessage);
-                resetForm();
-                setSelectedCourses([]);
-                setSelectedCourseId('');
-            })
-            .catch(error => console.error('Error:', error));
+        .then(response => response.json())
+        .then(data => {
+            let addStudentMessage = `User added!\n${data.firstName} ${data.lastName}\n${data.email}\n`;
+            data.courseEnrollments.forEach((courseEnrollment: { name: CourseEnrollment; }) => {
+                addStudentMessage += `${courseEnrollment.name}\n`;
+            });
+            alert(addStudentMessage);
+            resetForm();
+            setSelectedCourses([]);
+            setSelectedCourseId('');
+        })
+        .catch(error => console.error('Error:', error));
+    };
+
+    const initialValues: Student = {
+        id: 0,
+        firstName: '',
+        lastName: '',
+        email: '',
+        status: 0,
+        courseEnrollments: []
     };
 
     return (
