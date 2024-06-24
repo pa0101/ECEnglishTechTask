@@ -19,6 +19,7 @@
 Input:
 - holidayStartDate: Date the holiday starts (must be a Monday)
 - holidayEndDate: Date the holiday ends (must be a Friday)
+
 Output:
 - List of courses with new start and end dates 
 
