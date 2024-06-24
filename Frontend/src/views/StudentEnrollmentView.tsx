@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { studentEnrollmentFormSchema } from '../yup/ValidationSchema';
 import { Course } from '../models/Course';
 import { Student } from '../models/Student';
 import { CourseEnrollment } from '../models/CourseEnrollment';
 import { Dropdown } from '../components/Dropdown';
+
 
 function StudentEnrollmentView() {
     const [courses, setCourses] = useState<Course[]>([]);
@@ -12,7 +13,7 @@ function StudentEnrollmentView() {
     const [selectedCourseId, setSelectedCourseId] = useState<string | number>(''); 
 
     useEffect(() => {
-        fetch('http://localhost:5089/course/getcourses')
+        fetch(`${import.meta.env.VITE_API_BASE_URL}course/getcourses`)
             .then(response => response.json())
             .then(data => setCourses(data))
             .catch(error => console.error('Error fetching courses:', error));
@@ -24,6 +25,7 @@ function StudentEnrollmentView() {
                 alert('Course dates cannot overlap!');
                 return prev;
             }
+            alert(`${course.name} added!`);
             return [...prev, course];
         });
         setSelectedCourseId('');
@@ -47,26 +49,24 @@ function StudentEnrollmentView() {
         courseEnrollments: []
     };
 
-    const validationSchema = Yup.object({
-        firstName: Yup.string().required('First name is required'),
-        lastName: Yup.string().required('Last name is required'),
-        email: Yup.string().email('Invalid email address').required('Email is required'),
-    });
-
     const handleSubmit = (values: Student, { resetForm }: { resetForm: () => void }) => {
         const studentEnrollment: Student = {
             ...values,
             courseEnrollments: mapCourseEnrollments(selectedCourses)
         };
 
-        fetch('http://localhost:5089/student/addstudent', {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}student/addstudent`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(studentEnrollment)
         })
             .then(response => response.json())
             .then(data => {
-                alert(`Success: ${JSON.stringify(data)}`);
+                let addStudentMessage = `User added!\n${data.firstName} ${data.lastName}\n${data.email}\n`;
+                data.courseEnrollments.forEach((courseEnrollment: { name: CourseEnrollment; }) => {
+                    addStudentMessage += `${courseEnrollment.name}\n`;
+                });
+                alert(addStudentMessage);
                 resetForm();
                 setSelectedCourses([]);
                 setSelectedCourseId('');
@@ -78,7 +78,7 @@ function StudentEnrollmentView() {
         <div>
             <Formik
                 initialValues={initialValues}
-                validationSchema={validationSchema}
+                validationSchema={studentEnrollmentFormSchema}
                 onSubmit={handleSubmit}
             >
                 {({ setFieldValue }) => (
